@@ -17,12 +17,14 @@ export default function AvailablePlaces({ onSelectPlace }) {
       try{
 
         const places = await fetchAvailablePlaces();
-
+        //console.log(places)
         navigator.geolocation.getCurrentPosition((position)=>{
-          console.log(position)
+          //console.log(position)
           const sortedPlaces = sortPlacesByDistance(places,position.coords.latitude,position.coords.longitude)
+          //console.log(sortedPlaces)
           setAvailabelPlaces(sortedPlaces)
           setIsFetching(false)
+          //console.log(availabelPlaces)
         })
 
       }
