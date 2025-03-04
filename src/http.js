@@ -9,9 +9,9 @@ export async function fetchAvailablePlaces(){
 }
 
 export async function updateUserPlaces(places){
-  try{
+//  try{
     console.log(places)
-    const response = await fetch("http://localhost:3000/user-places",{
+    const response = await fetch("http://localhost:3000/user-placessssssss",{
       method:"PUT",
       body:JSON.stringify({places}),
       headers:{
@@ -19,13 +19,18 @@ export async function updateUserPlaces(places){
       }
     })
     const resData = await response.json()
+    console.log("Inside http.js")
+    console.log(resData.message)
+
     if(!response.ok){
       throw new Error("Unable to update")
     }
     return resData.message
-  }
-  catch(error){
-    console.log(error)
-  }
+  // }
+  // catch(error){
+  //   console.log("Inside catch")
+  //   console.log(error)
+  //   return error.message
+  // }
 
 }
