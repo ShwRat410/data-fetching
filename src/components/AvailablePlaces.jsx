@@ -4,20 +4,23 @@ import {sortPlacesByDistance} from '../loc.js'
 import { fetchAvailablePlaces } from '../http.js'
 import { useFetch } from '../hooks/useFetch.js';
 
-// navigator.geolocation.getCurrentPosition((position)=>{
-//   const sortedPlaces = sortPlacesByDistance(places,position.coords.latitude,position.coords.longitude)
-//   setAvailabelPlaces(sortedPlaces)
-//   setIsFetching(false)
-// })
+async function fetchSortedPlaces(){
+  const places = await fetchAvailablePlaces()
+  return new Promise((resolve)=>{
+    navigator.geolocation.getCurrentPosition((position)=>{
+      const sortedPlaces = sortPlacesByDistance(places,position.coords.latitude,position.coords.longitude)
+      resolve(sortedPlaces)
+    })
+  })
+}
 
 export default function AvailablePlaces({ onSelectPlace }) {
 
   const {
     fetchedData:availabelPlaces,
-    setFetchedData:setAvailabelPlaces,
     isLoading:isFetching,
     error
-  } = useFetch(fetchAvailablePlaces,[])
+  } = useFetch(fetchSortedPlaces,[])
 
   if(error){
     return(
