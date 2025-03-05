@@ -19,22 +19,6 @@ function App() {
 
   const { fetchedData:userPlaces,setFetchedData:setUserPlaces,isLoading,error} = useFetch(fetchSavedPlaces,[]);
 
-  // useEffect(()=>{
-  //   async function fetchPlaces(){
-  //     setIsLoading(true)
-  //     try{
-  //       const places = await fetchSavedPlaces()
-  //       setUserPlaces(places)
-  //     }
-  //     catch(error){
-  //       setError({message:error.message || "Failes to fetch user place"})
-  //     }
-  //     setIsLoading(false)
-
-  //   }  
-  //   fetchPlaces()
-  // },[])
-
   function handleStartRemovePlace(place) {
     setModalIsOpen(true);
     selectedPlace.current = place;
